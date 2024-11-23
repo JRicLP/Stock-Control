@@ -216,16 +216,16 @@ void atualizarProduto(const char *codigoProduto) {
     }
 
     Estoque estoque;
-    char atualizarCodigo;
-    int encontrado = 0;
+    char atualizarCodigo, atualizarNome, atualizarAno, atualizarSetor, atualizarStatus;
+    int encontrarCodigo = 0;
 
     while (fscanf(arquivo, "%49[^|]|%5[^|]|%4[^|]|%49[^|]|%14[^\n]\n",
                   estoque.nome_item, estoque.codigo_item, estoque.ano_item, estoque.setor_item, estoque.status_item) != EOF) {
         if (strcmp(estoque.codigo_item, codigoProduto) == 0) {
-            encontrado = 1;
-            printf("Deseja manter o codigo atual deste produto na atualizacao? (s/n): ");
+            encontrarCodigo = 1;
+            printf("Deseja ALTERAR o codigo atual deste produto na atualizacao? (s/n): ");
             scanf(" %c", &atualizarCodigo);
-            if (atualizarCodigo == 'n' || atualizarCodigo == 'N'){
+            if (atualizarCodigo == 's' || atualizarCodigo == 'S'){
                 printf("Digite o novo codigo: ");
                 scanf(" %[^\n]", estoque.codigo_item);
                 while (codigoExistente(estoque.codigo_item)) {
@@ -234,15 +234,27 @@ void atualizarProduto(const char *codigoProduto) {
                     continue;}
             }
 
-            printf("Digite o novo nome: ");
-            scanf(" %[^\n]", estoque.nome_item);
+            printf("Deseja ALTERAR o nome atual deste produto na atualizacao? (s/n): ");
+            scanf(" %c", &atualizarNome);
+            if (atualizarNome == 's' || atualizarNome == 'S'){
+                printf("Digite o novo nome: ");
+                scanf(" %[^\n]", estoque.nome_item);}
 
-            printf("Digite o novo ano: ");
-            scanf(" %[^\n]", estoque.ano_item);
+            printf("Deseja ALTERAR o ano atual deste produto na atualizacao? (s/n): ");
+            scanf(" %c", &atualizarAno);
+            if (atualizarAno == 's' || atualizarAno == 'S'){
+                printf("Digite o novo ano: ");
+                scanf(" %[^\n]", estoque.ano_item);}
 
-            printf("Digite o novo setor: ");
-            scanf(" %[^\n]", estoque.setor_item);
+            printf("Deseja ALTERAR o setor atual deste produto na atualizacao? (s/n): ");
+            scanf(" %c", &atualizarSetor);
+            if (atualizarSetor == 's' || atualizarSetor == 'S'){
+                printf("Digite o novo setor: ");
+                scanf(" %[^\n]", estoque.setor_item);}
 
+            printf("Deseja ALTERAR o status atual deste produto na atualizacao? (s/n): ");
+            scanf(" %c", &atualizarStatus);
+            if (atualizarStatus == 's' || atualizarStatus == 'S'){
             while (1) {
                     printf("Digite o novo status (Funcionando/Obsoleto/Em manutencao): ");
                     scanf(" %[^\n]", estoque.status_item);
@@ -255,7 +267,7 @@ void atualizarProduto(const char *codigoProduto) {
                         printf("Status invalido! Por favor, digite novamente.\n");
                     }
                 }
-
+            }
             printf("Produto atualizado com sucesso!\n");
         }
 
@@ -268,7 +280,7 @@ void atualizarProduto(const char *codigoProduto) {
     remove("estoque.txt");
     rename("temp.txt", "estoque.txt");
 
-    if (!encontrado) {
+    if (!encontrarCodigo) {
         printf("Produto nao encontrado.\n");
     }
 }
