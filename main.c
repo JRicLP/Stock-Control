@@ -5,8 +5,8 @@
 
 typedef struct {
     char nome_item[50];
-    char codigo_item[6];
-    char ano_item[5];
+    char codigo_item[20];
+    char ano_item[20];
     char setor_item[50];
     char status_item[15];
 } Estoque; //Estrutura de dados do codigo de registro
@@ -16,7 +16,7 @@ typedef struct {
     char nome_usuario[50];
     char senha[50];
 } Usuario;
-//FunÁ„o de cadastro do usu·rio
+//Fun√ß√£o de cadastro do usu√°rio
 void cadastrarUsuario() {
     FILE *arquivo = fopen("usuarios.txt", "a");
     if (arquivo == NULL) {
@@ -30,13 +30,13 @@ void cadastrarUsuario() {
     printf("Digite a senha: ");
     scanf(" %[^\n]", usuario.senha);
 
-    //Grava os dados do usu·rio
+    //Grava os dados do usu√°rio
     fprintf(arquivo, "%s|%s\n", usuario.nome_usuario, usuario.senha);
     printf("Usuario cadastrado com sucesso!\n");
 
     fclose(arquivo);
 }
-//FunÁ„o para o login do usu·rio
+//Fun√ß√£o para o login do usu√°rio
 int fazerLogin() {
     FILE *arquivo = fopen("usuarios.txt", "r");
     if (arquivo == NULL) {
@@ -53,7 +53,7 @@ int fazerLogin() {
     printf("Digite sua senha: ");
     scanf(" %[^\n]", senha);
 
-    //Verifica se o nome de usu·rio e senha est„o corretos
+    //Verifica se o nome de usu√°rio e senha est√£o corretos
     while (fscanf(arquivo, "%49[^|]|%49[^\n]\n", usuario.nome_usuario, usuario.senha) != EOF) {
         if (strcmp(usuario.nome_usuario, nome_usuario) == 0 && strcmp(usuario.senha, senha) == 0) {
             login_sucesso = 1;
@@ -92,7 +92,7 @@ int codigoExistente(const char *codigo) { //Verificacao da existencia do arquivo
     fclose(arquivo);
     return 0; //Codigo nao encontrado - Arquivo nao encontrado
 }
-//FunÁ„o para a gravaÁ„o de dados
+//Fun√ß√£o para a grava√ß√£o de dados
 void gravarDados() {
     FILE *arquivo = fopen("estoque.txt", "a");
     if (arquivo == NULL) {
@@ -110,7 +110,7 @@ void gravarDados() {
         printf("Digite o codigo do produto: ");
         scanf(" %[^\n]", estoque.codigo_item);
 
-        //Verifica se o cÛdigo j· existe
+        //Verifica se o c√≥digo j√° existe
         if (codigoExistente(estoque.codigo_item)) {
             printf("Erro: Codigo ja existente. Tente novamente com outro codigo.\n");
             continue;
@@ -127,11 +127,11 @@ void gravarDados() {
             printf("Digite o status do produto (Funcionando/Obsoleto/Em manutencao): ");
             scanf(" %[^\n]", estoque.status_item);
 
-            // Verificar se o status È v·lido
+            // Verificar se o status √© v√°lido
             if (strcasecmp(estoque.status_item, "Funcionando") == 0 ||
                 strcasecmp(estoque.status_item, "Obsoleto") == 0 ||
                 strcasecmp(estoque.status_item, "Em manutencao") == 0) {
-                break; // Status v·lido, sai do loop
+                break; // Status v√°lido, sai do loop
             } else {
                 printf("Status invalido! Por favor, digite novamente.\n");
             }
@@ -262,7 +262,7 @@ void atualizarProduto(const char *codigoProduto) {
                     if (strcasecmp(estoque.status_item, "Funcionando") == 0 ||
                         strcasecmp(estoque.status_item, "Obsoleto") == 0 ||
                         strcasecmp(estoque.status_item, "Em manutencao") == 0) {
-                        break; // Status v·lido, sai do loop
+                        break; // Status v√°lido, sai do loop
                     } else {
                         printf("Status invalido! Por favor, digite novamente.\n");
                     }
@@ -318,13 +318,13 @@ void excluirProduto(const char *codigoProduto) {
 
             if (confirmacao == 's' || confirmacao == 'S') {
                 printf("Produto excluido com sucesso!\n");
-                continue; //N„o escreve no arquivo tempor·rio, efetivamente excluindo
+                continue; //N√£o escreve no arquivo tempor√°rio, efetivamente excluindo
             } else {
                 printf("Operacao de exclusao cancelada.\n");
             }
         }
 
-        //Escrever no arquivo tempor·rio se n„o for o produto a excluir
+        //Escrever no arquivo tempor√°rio se n√£o for o produto a excluir
         fprintf(tempArquivo, "%s|%s|%s|%s|%s\n",
                 estoque.nome_item, estoque.codigo_item, estoque.ano_item, estoque.setor_item, estoque.status_item);
     }
@@ -342,7 +342,7 @@ void excluirProduto(const char *codigoProduto) {
 
 int main() {
     char opcao;
-    char codigoProduto[6];
+    char codigoProduto[20];
     int login_realizado = 0;
 
     //Loop para permitir cadastro ou login
@@ -355,7 +355,7 @@ int main() {
             scanf(" %c", &opcao);
 
             if (opcao == '1') {
-                cadastrarUsuario(); //Cadastrar novo usu·rio
+                cadastrarUsuario(); //Cadastrar novo usu√°rio
             } else if (opcao == '2') {
                 login_realizado = fazerLogin(); //Tentar fazer login
             } else {
@@ -364,9 +364,9 @@ int main() {
             }
 
 
-    } while (!login_realizado); //Continua atÈ o login ser realizado com sucesso
+    } while (!login_realizado); //Continua at√© o login ser realizado com sucesso
 
-    //Menu do sistema de estoque apÛs login
+    //Menu do sistema de estoque ap√≥s login
     do {
         printf("\nEscolha uma opcao:\n");
         printf("1 - Adicionar produto\n");
@@ -407,7 +407,7 @@ int main() {
                 printf("Opcao invalida! Tente novamente.\n");
         }
 
-    } while (opcao != '6'); //Continua o menu de estoque atÈ o usu·rio encerrar
+    } while (opcao != '6'); //Continua o menu de estoque at√© o usu√°rio encerrar
 
     return 0;
 }
