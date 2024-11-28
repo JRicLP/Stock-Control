@@ -161,9 +161,9 @@ void listarDados() {
     printf("|   Nome do Produto    | Codigo |  Ano |       Setor        |     Status   \n");
     printf("-----------------------------------------------------------------------------\n");
 
-    while (fscanf(arquivo, "%49[^|]|%5[^|]|%4[^|]|%49[^|]|%14[^\n]\n",
+    while (fscanf(arquivo, "%49[^|]|%20[^|]|%20[^|]|%49[^|]|%14[^\n]\n",
                   estoque.nome_item, estoque.codigo_item, estoque.ano_item, estoque.setor_item, estoque.status_item) != EOF) {
-        printf("|%-21s | %-6s | %-4s | %-18s | %-10s\n",
+        printf("|%-21s | %-20s | %20s | %-18s | %-10s\n",
                estoque.nome_item,
                estoque.codigo_item,
                estoque.ano_item,
