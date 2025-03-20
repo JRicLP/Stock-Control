@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1742444624 source:c:\users\joaor\onedrive\documentos\c - codeblocks\controleestoque\main.c
+	<stdio.h>
+	<string.h>
+	<strings.h>
+
