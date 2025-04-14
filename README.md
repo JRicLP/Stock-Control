@@ -85,22 +85,22 @@ Estruturas (struct) para organização de dados
 
 ---
 
-## 🔐 Segurança
+## 🔐 Segurança:
 O sistema faz validação de usuário e senha antes de permitir acesso às funcionalidades de gerenciamento de estoque. As credenciais são armazenadas em texto simples (para fins didáticos). Em sistemas reais, recomenda-se criptografar as senhas.
 
 ---
 
-## 🤝 Contribuição
+## 🤝 Contribuição:
 Sinta-se livre para abrir issues, propor melhorias ou enviar pull requests!
 
 ---
 
-## 📄 Licença
+## 📄 Licença:
 Este projeto está sob a licença MIT. Consulte o arquivo LICENSE para mais informações.
 
 ---
 
-## 👨‍💻 Autor
+## 👨‍💻 Autores:
 Desenvolvido por:
 
 https://github.com/JRicLP
