@@ -101,4 +101,7 @@ Este projeto está sob a licença MIT. Consulte o arquivo LICENSE para mais info
 ---
 
 ## 👨‍💻 Autor
-Desenvolvido por JricLP
+Desenvolvido por:
+
+https://github.com/JRicLP
+https://github.com/lacavaalex
